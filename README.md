@@ -93,7 +93,7 @@ Shreddit is intended to remain closer to a browser stylesheet than to an alterna
 
 ## Project status
 
-Private prototype. Reddit's frontend markup changes frequently, so selectors may need maintenance.
+Private prototype. Reddit's frontend markup changes frequently, so selectors may need maintenance. Inspired by https://www.cole-k.com/2026/07/21/reddit/ with announcement via same discussion by the author - https://lobste.rs/s/gqdvdt/so_reddit_has_decided_plain_html_is_unsafe
 
 ## License
 
