@@ -107,7 +107,6 @@ Original prototype built through ChatGPT; this release's full-width media, type 
 
 ---
 
-*prepare for the care when we cannot be there*
-
-**DAN THE MAN ADAMS!**
-[linktr.ee/the1truedan](https://linktr.ee/the1truedan) · [ko-fi.com/the1truedan](https://Ko-fi.com/the1truedan)
+> prepare for the care when we cannot be there
+> DAN THE MAN ADAMS!
+> https://linktr.ee/the1truedan · https://ko-fi.com/the1truedan
