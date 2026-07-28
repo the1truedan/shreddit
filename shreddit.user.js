@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name         Shreddit
 // @namespace    https://github.com/the1truedan/shreddit
-// @version      0.5.0
+// @version      0.6.0
 // @description  Shreds modern Reddit's visual clutter into a permanent, full-width, square-edged, text-first speedreader.
 // @author       the1truedan
+// @license      MIT
 // @match        https://www.reddit.com/*
 // @match        https://reddit.com/*
 // @run-at       document-start
@@ -61,7 +62,7 @@
       background: #fff !important;
       color: var(--shreddit-text) !important;
       font-family: Verdana, Arial, Helvetica, sans-serif !important;
-      font-size: 10px !important;
+      font-size: 12px !important;
     }
 
     html.shreddit-enabled body {
@@ -71,6 +72,7 @@
       margin: 0 !important;
       padding: 0 !important;
       overflow-x: hidden !important;
+      overflow-y: auto !important;
       background: #fff !important;
       color: var(--shreddit-text) !important;
       font-family: Verdana, Arial, Helvetica, sans-serif !important;
@@ -121,14 +123,14 @@
       align-items: center !important;
       gap: 6px !important;
       width: 100% !important;
-      min-height: 29px !important;
+      min-height: 32px !important;
       margin: 0 !important;
       padding: 3px 6px !important;
       border: 0 !important;
       border-bottom: 1px solid var(--shreddit-header-border) !important;
       background: var(--shreddit-header-bg) !important;
       color: #222 !important;
-      font: 10px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
+      font: 12px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled.shreddit-hide-toolbar #shreddit-toolbar {
@@ -138,7 +140,7 @@
     html.shreddit-enabled #shreddit-toolbar .shreddit-brand {
       margin-right: 5px !important;
       color: #ff4500 !important;
-      font-size: 15px !important;
+      font-size: 17px !important;
       font-weight: bold !important;
       letter-spacing: -1px !important;
       text-decoration: none !important;
@@ -156,7 +158,7 @@
 
     html.shreddit-enabled #shreddit-toolbar button {
       min-width: 0 !important;
-      min-height: 21px !important;
+      min-height: 24px !important;
       margin: 0 !important;
       padding: 2px 7px !important;
       cursor: pointer !important;
@@ -164,7 +166,7 @@
       border-radius: 0 !important;
       background: #fff !important;
       color: #222 !important;
-      font: 10px/1 Verdana, Arial, Helvetica, sans-serif !important;
+      font: 12px/1 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled #shreddit-toolbar button:hover {
@@ -184,6 +186,20 @@
     html.shreddit-enabled #shreddit-toolbar .shreddit-status {
       color: #555 !important;
       white-space: nowrap !important;
+    }
+
+    /* Suppress the scroll-triggered "sign in" nudge modal (rpl-modal-card). This is a
+       marketing interstitial, not a safety/consent dialog, so it's excluded here rather
+       than in the generic dialog rules above. */
+    html.shreddit-enabled rpl-modal-card,
+    html.shreddit-enabled div:has(> rpl-modal-card),
+    html.shreddit-enabled shreddit-signup-drawer,
+    html.shreddit-enabled [data-testid="login-modal"],
+    html.shreddit-enabled [data-testid="signup-modal"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
 
     /* Remove page chrome and recommendation rails, but not safety dialogs. */
@@ -325,7 +341,7 @@
       width: 27px !important;
       color: #aaa !important;
       text-align: right !important;
-      font: normal 12px/1 Verdana, Arial, Helvetica, sans-serif !important;
+      font: normal 14px/1 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-post [data-post-click-location="vote"],
@@ -362,7 +378,7 @@
       margin: 0 !important;
       padding: 0 !important;
       color: var(--shreddit-link) !important;
-      font: normal 13px/1.28 Verdana, Arial, Helvetica, sans-serif !important;
+      font: normal 15px/1.28 Verdana, Arial, Helvetica, sans-serif !important;
       overflow-wrap: anywhere !important;
       text-decoration: none !important;
     }
@@ -386,7 +402,7 @@
       margin: 1px 0 !important;
       padding: 0 !important;
       color: var(--shreddit-muted) !important;
-      font: normal 9px/1.3 Verdana, Arial, Helvetica, sans-serif !important;
+      font: normal 11px/1.3 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-post a {
@@ -412,7 +428,7 @@
       border-left: 2px solid #ddd !important;
       background: transparent !important;
       color: #222 !important;
-      font: normal 12px/1.45 Arial, Helvetica, sans-serif !important;
+      font: normal 14px/1.45 Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled :is(shreddit-post, shreddit-comment) :is(p, ul, ol, blockquote, pre) {
@@ -442,7 +458,7 @@
       border: 0 !important;
       background: transparent !important;
       color: #777 !important;
-      font: bold 9px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
+      font: bold 11px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-post :is(
@@ -457,7 +473,7 @@
       border: 0 !important;
       background: transparent !important;
       color: #777 !important;
-      font: bold 9px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
+      font: bold 11px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled awards-bar,
@@ -520,13 +536,36 @@
     }
 
     html.shreddit-enabled:not(.shreddit-text-only):not(.shreddit-compact-media) shreddit-post :is(
-      img,
-      video,
+      shreddit-player,
+      shreddit-post-media,
+      shreddit-gallery,
+      gallery-carousel,
+      reddit-video,
       picture,
       figure,
-      shreddit-player,
-      shreddit-post-media
+      [data-post-click-location="media"],
+      [data-testid="post-media"],
+      [slot="post-media-container"]
     ) {
+      width: 100% !important;
+      max-width: none !important;
+      height: auto !important;
+      max-height: none !important;
+      margin: 3px 0 !important;
+      padding: 0 !important;
+      overflow: visible !important;
+      border: 0 !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    html.shreddit-enabled:not(.shreddit-text-only):not(.shreddit-compact-media) shreddit-post :is(img, video) {
+      width: 100% !important;
+      max-width: none !important;
+      height: auto !important;
+      max-height: none !important;
+      object-fit: contain !important;
       border-radius: 0 !important;
       box-shadow: none !important;
     }
@@ -548,7 +587,7 @@
       top: 3px !important;
       right: 5px !important;
       color: #7c5700 !important;
-      font: normal 9px/1 Verdana, Arial, Helvetica, sans-serif !important;
+      font: normal 11px/1 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-comment-tree,
@@ -572,7 +611,7 @@
       border-left: 2px solid #c7c7c7 !important;
       background: var(--shreddit-comment-alt) !important;
       color: #222 !important;
-      font: normal 12px/1.42 Arial, Helvetica, sans-serif !important;
+      font: normal 14px/1.42 Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-comment:nth-of-type(even) {
@@ -587,7 +626,7 @@
       margin: 0 0 2px !important;
       padding: 0 !important;
       color: #777 !important;
-      font: normal 9px/1.25 Verdana, Arial, Helvetica, sans-serif !important;
+      font: normal 11px/1.25 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-comment :is(
@@ -611,19 +650,53 @@
     ) {
       width: 100% !important;
       max-width: none !important;
+      height: auto !important;
+      max-height: none !important;
+      min-height: 0 !important;
       margin: 0 !important;
       padding: 4px 7px !important;
       border: 0 !important;
       border-bottom: 1px solid var(--shreddit-header-border) !important;
       background: var(--shreddit-header-bg) !important;
+      background-image: none !important;
+      opacity: 1 !important;
+    }
+
+    html.shreddit-enabled :is(
+      community-header,
+      shreddit-subreddit-header,
+      subreddit-header,
+      [data-testid="subreddit-header"]
+    ) * {
+      background-image: none !important;
     }
 
     html.shreddit-enabled :is(
       shreddit-subreddit-header,
       subreddit-header,
       [data-testid="subreddit-header"]
-    ) :is(img, shreddit-subreddit-icon, faceplate-img) {
+    ) :is(
+      img,
+      picture,
+      svg,
+      shreddit-subreddit-icon,
+      faceplate-img,
+      [class*="banner" i],
+      [data-testid*="banner" i],
+      [style*="background-image"]
+    ) {
       display: none !important;
+    }
+
+    html.shreddit-enabled :is(
+      shreddit-subreddit-header,
+      subreddit-header,
+      [data-testid="subreddit-header"]
+    ) :is(h1, h2, span, p, a, faceplate-text) {
+      opacity: 1 !important;
+      color: #222 !important;
+      text-shadow: none !important;
+      -webkit-text-fill-color: #222 !important;
     }
 
     @media (max-width: 700px) {

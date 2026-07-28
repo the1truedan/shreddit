@@ -99,4 +99,15 @@ Private prototype. Reddit's frontend markup changes frequently, so selectors may
 
 ## License
 
-No open-source license has been selected yet. Until one is added, normal copyright restrictions apply.
+MIT — see [`LICENSE`](./LICENSE).
+
+## Credits
+
+Original prototype built through ChatGPT; this release's full-width media, type scale, banner, and login-nudge-suppression pass done with Claude (Anthropic).
+
+---
+
+*prepare for the care when we cannot be there*
+
+**DAN THE MAN ADAMS!**
+[linktr.ee/the1truedan](https://linktr.ee/the1truedan) · [ko-fi.com/the1truedan](https://Ko-fi.com/the1truedan)
