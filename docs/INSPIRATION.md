@@ -39,3 +39,19 @@ The name therefore works on three levels:
 1. It references Reddit's actual frontend component vocabulary.
 2. It describes stripping the modern interface down to readable essentials.
 3. It is, admittedly, a satisfying critique of the current UX.
+
+## Why this exists beyond Reddit
+
+This repo is small on purpose. It's a clean, fully checkable example of a
+process I'm using on something a lot bigger, running in parallel: an
+AI-orchestration project built around caregiving, developed while I've been
+navigating my own life as a family caregiver working through PTSD. Shreddit
+has nothing to do with caregiving directly — its value here is that anyone
+can read the whole reasoning chain in one sitting: real recon into what a
+platform's stated justification for a change actually holds up to, honest
+separation of the stated reason from the likely real one, and a solution that
+stays strictly inside the legal and ethical line the whole way through rather
+than crossing it to get a result.
+
+That's the same process the bigger project needs, just easier to verify here.
+More on that project soon — consider this the tell before the reveal.
