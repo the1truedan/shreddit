@@ -40,6 +40,28 @@ The name therefore works on three levels:
 2. It describes stripping the modern interface down to readable essentials.
 3. It is, admittedly, a satisfying critique of the current UX.
 
+## The stay-on-domain fix
+
+An early attempt just redirected the browser to `old.reddit.com`. That was
+wrong for the same reason a proxy or cache would be wrong: it depends on a
+Reddit-hosted path staying available rather than the presentation layer
+described above. A debugging exchange with Grok (xAI), 2026-07-24, worked
+through the correction:
+
+> “nope, still tried to connect to old.reddit.com — i think the chatgpt was
+> set to render new.reddit then wrap it in a view that is more aesthetic
+> like old.reddit.com while not touching the subdomain or forcing login ...
+> proper tm script that doesn't call old.reddit.com but presents the style
+> to user without login?”
+
+Grok's answer was a script that stays on `www.reddit.com`/`reddit.com` and
+injects CSS to feel denser and older, with a `MutationObserver` watching for
+Reddit's own re-renders stripping the injected `<style>` tag and re-applying
+it — with the caveat that a pixel-perfect Old Reddit clone isn't realistic
+against a frontend that changes class names often, but a "noticeably denser,
+more classic feel" is. That `@match`/`document-start`/`MutationObserver`
+shape is what `shreddit.user.js` ships with. ([chat](https://grok.com/c/773695e1-2153-4491-806c-55b293ff7fad))
+
 ## Why this exists beyond Reddit
 
 This repo is small on purpose. It's a clean, fully checkable example of a

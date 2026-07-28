@@ -103,7 +103,7 @@ MIT — see [`LICENSE`](./LICENSE).
 
 ## Credits
 
-Original prototype built through ChatGPT; this release's full-width media, type scale, banner, and login-nudge-suppression pass done with Claude (Anthropic).
+Original prototype built through ChatGPT; this release's full-width media, type scale, banner, and login-nudge-suppression pass done with Claude (Anthropic). The core architecture decision — stay on `www.reddit.com`/`reddit.com` rather than redirect to `old.reddit.com`, and use a `MutationObserver` to re-apply styling when Reddit's own re-renders strip it — came out of a debugging exchange with Grok (xAI), 2026-07-24: an initial redirect-based script was tried and rejected as the wrong approach, and Grok's follow-up CSS-injection-plus-observer pattern is what the shipped script's `@match`/`document-start`/`MutationObserver` structure is built on. See [`docs/INSPIRATION.md`](./docs/INSPIRATION.md) for the excerpt.
 
 ---
 
