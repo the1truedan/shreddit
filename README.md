@@ -24,6 +24,7 @@ discussion here - https://lobste.rs/s/gqdvdt/so_reddit_has_decided_plain_html_is
 - Uses a permanent speedreader layout while the userscript is enabled.
 - Defaults to text-only reading while preserving links and metadata.
 - Supports compact-media and normal-media modes.
+- Dark mode with an old-reddit-night-mode-inspired palette.
 - Compacts nested comment threads and limits runaway indentation.
 
 ## Installation
@@ -44,14 +45,24 @@ discussion here - https://lobste.rs/s/gqdvdt/so_reddit_has_decided_plain_html_is
 4. Replace the template with [`shreddit.user.js`](./shreddit.user.js).
 5. Save and reload Reddit.
 
+### On a phone
+
+Firefox + Tampermonkey works directly on Android. iOS needs Safari plus a
+userscript app (Firefox can't run extensions on iOS at all). See
+[`docs/MOBILE.md`](./docs/MOBILE.md) for both, with screenshots.
+
 ## Controls
 
 | Control | Action |
 |---|---|
 | Toolbar media button | Cycles text-only → compact media → normal media |
 | `Alt+Shift+M` | Cycles media modes |
+| Toolbar dark mode button | Toggles the dark theme |
+| `Alt+Shift+D` | Toggles the dark theme |
 | `Alt+Shift+T` | Hides or restores the Shreddit toolbar |
 | Disable userscript | Returns to Reddit's original interface |
+
+Dark mode defaults to your OS's `prefers-color-scheme` on first run, then remembers your choice.
 
 There is intentionally **no “modern view” toggle** inside the script. Earlier prototypes included one, but Reddit's client-side navigation could leave the page in an inconsistent state after switching. The userscript itself is now the single on/off boundary.
 
@@ -69,6 +80,7 @@ There is intentionally **no “modern view” toggle** inside the script. Earlie
 └── docs/
     ├── ARCHITECTURE.md           # Technical design
     ├── INSPIRATION.md            # Origin and conversation excerpts
+    ├── MOBILE.md                 # iOS and Android install instructions
     ├── PRIVACY-BOUNDARIES.md     # Explicit non-goals and guardrails
     └── TESTING.md                # Manual test matrix
 ```

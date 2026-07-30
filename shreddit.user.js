@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Shreddit
 // @namespace    https://github.com/the1truedan/shreddit
-// @version      0.6.0
+// @version      0.6.2
 // @description  Shreds modern Reddit's visual clutter into a permanent, full-width, square-edged, text-first speedreader.
 // @author       the1truedan
 // @license      MIT
@@ -19,26 +19,30 @@
     style: 'shreddit-style',
     toolbar: 'shreddit-toolbar',
     mediaButton: 'shreddit-media-button',
-    toolbarButton: 'shreddit-toolbar-button'
+    toolbarButton: 'shreddit-toolbar-button',
+    darkButton: 'shreddit-dark-button'
   });
 
   const CLASSES = Object.freeze({
     enabled: 'shreddit-enabled',
     textOnly: 'shreddit-text-only',
     compactMedia: 'shreddit-compact-media',
-    hideToolbar: 'shreddit-hide-toolbar'
+    hideToolbar: 'shreddit-hide-toolbar',
+    dark: 'shreddit-dark'
   });
 
   const STORAGE_KEYS = Object.freeze({
     mediaMode: 'shreddit-media-mode',
-    toolbarVisible: 'shreddit-toolbar-visible'
+    toolbarVisible: 'shreddit-toolbar-visible',
+    darkMode: 'shreddit-dark-mode'
   });
 
   const MEDIA_MODES = Object.freeze(['text', 'compact', 'normal']);
 
   const state = {
     mediaMode: getStoredMediaMode(),
-    toolbarVisible: readStoredBoolean(STORAGE_KEYS.toolbarVisible, true)
+    toolbarVisible: readStoredBoolean(STORAGE_KEYS.toolbarVisible, true),
+    darkMode: getStoredDarkMode()
   };
 
   const CSS = String.raw`
@@ -54,15 +58,50 @@
       --shreddit-row-alt: #f7f7f7;
       --shreddit-comment-alt: #fafafa;
       --shreddit-promoted: #fff7df;
+      --shreddit-bg: #fff;
+      --shreddit-control-bg: #fff;
+      --shreddit-control-border: #888;
+      --shreddit-strong-link: #000;
+      --shreddit-rank: #aaa;
+      --shreddit-quote-border: #ddd;
+      --shreddit-comment-border: #c7c7c7;
+      --shreddit-status: #555;
+      --shreddit-promoted-text: #7c5700;
+      --shreddit-promoted-border: #d8b35c;
 
       width: 100% !important;
       max-width: none !important;
       margin: 0 !important;
       padding: 0 !important;
-      background: #fff !important;
+      background: var(--shreddit-bg) !important;
       color: var(--shreddit-text) !important;
       font-family: Verdana, Arial, Helvetica, sans-serif !important;
-      font-size: 12px !important;
+      font-size: 14px !important;
+    }
+
+    /* Old-reddit-night-mode-inspired dark theme. Same layout, swapped palette only. */
+    html.shreddit-enabled.shreddit-dark {
+      --shreddit-header-bg: #1f3540;
+      --shreddit-header-border: #2f4d5c;
+      --shreddit-link: #6ab0f3;
+      --shreddit-visited: #b993e0;
+      --shreddit-text: #d7dadc;
+      --shreddit-muted: #9a9a9a;
+      --shreddit-border: #343536;
+      --shreddit-row: #1a1a1b;
+      --shreddit-row-alt: #161617;
+      --shreddit-comment-alt: #202023;
+      --shreddit-promoted: #2b2410;
+      --shreddit-bg: #0f1010;
+      --shreddit-control-bg: #272729;
+      --shreddit-control-border: #4a4a4a;
+      --shreddit-strong-link: #d7dadc;
+      --shreddit-rank: #818384;
+      --shreddit-quote-border: #4a4a4a;
+      --shreddit-comment-border: #343536;
+      --shreddit-status: #9a9a9a;
+      --shreddit-promoted-text: #e2b653;
+      --shreddit-promoted-border: #6b5423;
     }
 
     html.shreddit-enabled body {
@@ -73,7 +112,7 @@
       padding: 0 !important;
       overflow-x: hidden !important;
       overflow-y: auto !important;
-      background: #fff !important;
+      background: var(--shreddit-bg) !important;
       color: var(--shreddit-text) !important;
       font-family: Verdana, Arial, Helvetica, sans-serif !important;
     }
@@ -129,8 +168,8 @@
       border: 0 !important;
       border-bottom: 1px solid var(--shreddit-header-border) !important;
       background: var(--shreddit-header-bg) !important;
-      color: #222 !important;
-      font: 12px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
+      color: var(--shreddit-text) !important;
+      font: 14px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled.shreddit-hide-toolbar #shreddit-toolbar {
@@ -140,14 +179,14 @@
     html.shreddit-enabled #shreddit-toolbar .shreddit-brand {
       margin-right: 5px !important;
       color: #ff4500 !important;
-      font-size: 17px !important;
+      font-size: 19px !important;
       font-weight: bold !important;
       letter-spacing: -1px !important;
       text-decoration: none !important;
     }
 
     html.shreddit-enabled #shreddit-toolbar a {
-      color: #000 !important;
+      color: var(--shreddit-strong-link) !important;
       font-weight: bold !important;
       text-decoration: none !important;
     }
@@ -162,15 +201,15 @@
       margin: 0 !important;
       padding: 2px 7px !important;
       cursor: pointer !important;
-      border: 1px solid #888 !important;
+      border: 1px solid var(--shreddit-control-border) !important;
       border-radius: 0 !important;
-      background: #fff !important;
-      color: #222 !important;
-      font: 12px/1 Verdana, Arial, Helvetica, sans-serif !important;
+      background: var(--shreddit-control-bg) !important;
+      color: var(--shreddit-text) !important;
+      font: 14px/1 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled #shreddit-toolbar button:hover {
-      background: #eee !important;
+      background: var(--shreddit-header-bg) !important;
     }
 
     html.shreddit-enabled #shreddit-toolbar button[data-active="true"] {
@@ -184,7 +223,7 @@
     }
 
     html.shreddit-enabled #shreddit-toolbar .shreddit-status {
-      color: #555 !important;
+      color: var(--shreddit-status) !important;
       white-space: nowrap !important;
     }
 
@@ -298,7 +337,7 @@
       max-width: none !important;
       margin: 0 !important;
       padding: 0 !important;
-      background: #fff !important;
+      background: var(--shreddit-bg) !important;
     }
 
     html.shreddit-enabled shreddit-feed > article,
@@ -311,7 +350,7 @@
       padding: 0 !important;
       border: 0 !important;
       border-bottom: 1px solid var(--shreddit-border) !important;
-      background: #fff !important;
+      background: var(--shreddit-bg) !important;
     }
 
     html.shreddit-enabled shreddit-post {
@@ -339,9 +378,9 @@
       top: 16px !important;
       left: 2px !important;
       width: 27px !important;
-      color: #aaa !important;
+      color: var(--shreddit-rank) !important;
       text-align: right !important;
-      font: normal 14px/1 Verdana, Arial, Helvetica, sans-serif !important;
+      font: normal 16px/1 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-post [data-post-click-location="vote"],
@@ -378,7 +417,7 @@
       margin: 0 !important;
       padding: 0 !important;
       color: var(--shreddit-link) !important;
-      font: normal 15px/1.28 Verdana, Arial, Helvetica, sans-serif !important;
+      font: normal 17px/1.28 Verdana, Arial, Helvetica, sans-serif !important;
       overflow-wrap: anywhere !important;
       text-decoration: none !important;
     }
@@ -402,7 +441,7 @@
       margin: 1px 0 !important;
       padding: 0 !important;
       color: var(--shreddit-muted) !important;
-      font: normal 11px/1.3 Verdana, Arial, Helvetica, sans-serif !important;
+      font: normal 13px/1.3 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-post a {
@@ -425,10 +464,10 @@
       margin: 4px 0 !important;
       padding: 3px 6px !important;
       border: 0 !important;
-      border-left: 2px solid #ddd !important;
+      border-left: 2px solid var(--shreddit-quote-border) !important;
       background: transparent !important;
-      color: #222 !important;
-      font: normal 14px/1.45 Arial, Helvetica, sans-serif !important;
+      color: var(--shreddit-text) !important;
+      font: normal 16px/1.45 Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled :is(shreddit-post, shreddit-comment) :is(p, ul, ol, blockquote, pre) {
@@ -457,8 +496,8 @@
       padding: 0 !important;
       border: 0 !important;
       background: transparent !important;
-      color: #777 !important;
-      font: bold 11px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
+      color: var(--shreddit-muted) !important;
+      font: bold 13px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-post :is(
@@ -472,8 +511,8 @@
       padding: 1px 3px !important;
       border: 0 !important;
       background: transparent !important;
-      color: #777 !important;
-      font: bold 11px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
+      color: var(--shreddit-muted) !important;
+      font: bold 13px/1.2 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled awards-bar,
@@ -577,7 +616,7 @@
       visibility: visible !important;
       opacity: 1 !important;
       background: var(--shreddit-promoted) !important;
-      outline: 1px solid #d8b35c !important;
+      outline: 1px solid var(--shreddit-promoted-border) !important;
       outline-offset: -1px !important;
     }
 
@@ -586,8 +625,8 @@
       position: absolute !important;
       top: 3px !important;
       right: 5px !important;
-      color: #7c5700 !important;
-      font: normal 11px/1 Verdana, Arial, Helvetica, sans-serif !important;
+      color: var(--shreddit-promoted-text) !important;
+      font: normal 13px/1 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-comment-tree,
@@ -598,7 +637,7 @@
       margin: 0 !important;
       padding: 2px 4px !important;
       border: 0 !important;
-      background: #fff !important;
+      background: var(--shreddit-bg) !important;
     }
 
     html.shreddit-enabled shreddit-comment {
@@ -608,14 +647,14 @@
       margin: 1px 0 1px 3px !important;
       padding: 4px 5px !important;
       border: 0 !important;
-      border-left: 2px solid #c7c7c7 !important;
+      border-left: 2px solid var(--shreddit-comment-border) !important;
       background: var(--shreddit-comment-alt) !important;
-      color: #222 !important;
-      font: normal 14px/1.42 Arial, Helvetica, sans-serif !important;
+      color: var(--shreddit-text) !important;
+      font: normal 16px/1.42 Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-comment:nth-of-type(even) {
-      background: #fff !important;
+      background: var(--shreddit-bg) !important;
     }
 
     html.shreddit-enabled shreddit-comment :is(
@@ -625,8 +664,8 @@
     ) {
       margin: 0 0 2px !important;
       padding: 0 !important;
-      color: #777 !important;
-      font: normal 11px/1.25 Verdana, Arial, Helvetica, sans-serif !important;
+      color: var(--shreddit-muted) !important;
+      font: normal 13px/1.25 Verdana, Arial, Helvetica, sans-serif !important;
     }
 
     html.shreddit-enabled shreddit-comment :is(
@@ -635,7 +674,7 @@
       .md
     ) {
       max-width: none !important;
-      color: #222 !important;
+      color: var(--shreddit-text) !important;
     }
 
     html.shreddit-enabled shreddit-comment shreddit-comment {
@@ -694,9 +733,9 @@
       [data-testid="subreddit-header"]
     ) :is(h1, h2, span, p, a, faceplate-text) {
       opacity: 1 !important;
-      color: #222 !important;
+      color: var(--shreddit-text) !important;
       text-shadow: none !important;
-      -webkit-text-fill-color: #222 !important;
+      -webkit-text-fill-color: var(--shreddit-text) !important;
     }
 
     @media (max-width: 700px) {
@@ -752,10 +791,25 @@
     }
   }
 
+  function getStoredDarkMode() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.darkMode);
+      if (stored !== null) return stored === 'true';
+    } catch {
+      // fall through to system preference
+    }
+    try {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    } catch {
+      return false;
+    }
+  }
+
   function saveState() {
     try {
       localStorage.setItem(STORAGE_KEYS.mediaMode, state.mediaMode);
       localStorage.setItem(STORAGE_KEYS.toolbarVisible, String(state.toolbarVisible));
+      localStorage.setItem(STORAGE_KEYS.darkMode, String(state.darkMode));
     } catch {
       // The interface still works if storage is blocked.
     }
@@ -778,6 +832,7 @@
     root.classList.toggle(CLASSES.textOnly, state.mediaMode === 'text');
     root.classList.toggle(CLASSES.compactMedia, state.mediaMode === 'compact');
     root.classList.toggle(CLASSES.hideToolbar, !state.toolbarVisible);
+    root.classList.toggle(CLASSES.dark, state.darkMode);
 
     updateToolbar();
     saveState();
@@ -791,6 +846,11 @@
 
   function toggleToolbar() {
     state.toolbarVisible = !state.toolbarVisible;
+    applyState();
+  }
+
+  function toggleDarkMode() {
+    state.darkMode = !state.darkMode;
     applyState();
   }
 
@@ -817,6 +877,7 @@
       <a href="/r/popular/">POPULAR</a>
       <a href="/r/all/">ALL</a>
       <button id="${IDS.mediaButton}" type="button" title="Cycle media modes — Alt+Shift+M">text only</button>
+      <button id="${IDS.darkButton}" type="button" title="Toggle dark mode — Alt+Shift+D">dark mode</button>
       <span class="shreddit-spacer"></span>
       <span class="shreddit-status">full-width local speedreader</span>
       <button id="${IDS.toolbarButton}" type="button" title="Hide toolbar — Alt+Shift+T">×</button>
@@ -824,16 +885,23 @@
 
     document.body.prepend(toolbar);
     toolbar.querySelector(`#${IDS.mediaButton}`)?.addEventListener('click', cycleMediaMode);
+    toolbar.querySelector(`#${IDS.darkButton}`)?.addEventListener('click', toggleDarkMode);
     toolbar.querySelector(`#${IDS.toolbarButton}`)?.addEventListener('click', toggleToolbar);
     updateToolbar();
   }
 
   function updateToolbar() {
     const mediaButton = document.getElementById(IDS.mediaButton);
-    if (!mediaButton) return;
+    if (mediaButton) {
+      mediaButton.textContent = getMediaLabel();
+      mediaButton.dataset.active = state.mediaMode === 'text' ? 'true' : 'false';
+    }
 
-    mediaButton.textContent = getMediaLabel();
-    mediaButton.dataset.active = state.mediaMode === 'text' ? 'true' : 'false';
+    const darkButton = document.getElementById(IDS.darkButton);
+    if (darkButton) {
+      darkButton.textContent = state.darkMode ? 'light mode' : 'dark mode';
+      darkButton.dataset.active = state.darkMode ? 'true' : 'false';
+    }
   }
 
   function isPromoted(post) {
@@ -920,6 +988,12 @@
     if (event.altKey && event.shiftKey && event.code === 'KeyM') {
       event.preventDefault();
       cycleMediaMode();
+      return;
+    }
+
+    if (event.altKey && event.shiftKey && event.code === 'KeyD') {
+      event.preventDefault();
+      toggleDarkMode();
       return;
     }
 

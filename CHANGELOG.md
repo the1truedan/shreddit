@@ -2,6 +2,19 @@
 
 All notable changes to Shreddit are documented here.
 
+## 0.6.2 - 2026-07-29
+
+### Added
+
+- Dark mode: an old-reddit-night-mode-inspired palette (dark blue-gray header, `#0f1010` page background, light-blue links) toggled via a new toolbar button, `Alt+Shift+D`, or automatically on first run from the OS `prefers-color-scheme`. Persisted in `localStorage` alongside the existing media-mode and toolbar-visibility state.
+- All previously hardcoded colors (post/comment text, borders, muted meta text, promoted-post labeling) now route through CSS custom properties so the dark theme covers every element, not just the toolbar.
+
+## 0.6.1 - 2026-07-29
+
+### Changed
+
+- Raised every declared font size by 2px (base 12px→14px, post titles 15px→17px, comment/post body 14px→16px, meta/footer text 11px→13px, brand mark 17px→19px) for better mobile readability.
+
 ## 0.6.0 - 2026-07-27
 
 ### Changed
