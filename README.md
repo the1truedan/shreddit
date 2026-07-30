@@ -80,6 +80,7 @@ There is intentionally **no “modern view” toggle** inside the script. Earlie
 └── docs/
     ├── ARCHITECTURE.md           # Technical design
     ├── INSPIRATION.md            # Origin and conversation excerpts
+    ├── LEGAL.md                  # Privacy and non-affiliation statements
     ├── MOBILE.md                 # iOS and Android install instructions
     ├── PRIVACY-BOUNDARIES.md     # Explicit non-goals and guardrails
     └── TESTING.md                # Manual test matrix
@@ -111,7 +112,7 @@ Private prototype. Reddit's frontend markup changes frequently, so selectors may
 
 ## License
 
-MIT — see [`LICENSE`](./LICENSE).
+MIT — see [`LICENSE`](./LICENSE). See also [`docs/LEGAL.md`](./docs/LEGAL.md) for the privacy and non-affiliation statements.
 
 ## Credits
 

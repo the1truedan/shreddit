@@ -2,6 +2,12 @@
 
 All notable changes to Shreddit are documented here.
 
+## Unreleased
+
+### Added
+
+- `docs/LEGAL.md`: standalone privacy statement (no analytics, telemetry, remote code, content export, or external network requests) and non-affiliation statement, per the original design chat.
+
 ## 0.6.2 - 2026-07-29
 
 ### Added
