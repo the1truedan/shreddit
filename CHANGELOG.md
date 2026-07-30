@@ -8,6 +8,7 @@ All notable changes to Shreddit are documented here.
 
 - Dark mode: an old-reddit-night-mode-inspired palette (dark blue-gray header, `#0f1010` page background, light-blue links) toggled via a new toolbar button, `Alt+Shift+D`, or automatically on first run from the OS `prefers-color-scheme`. Persisted in `localStorage` alongside the existing media-mode and toolbar-visibility state.
 - All previously hardcoded colors (post/comment text, borders, muted meta text, promoted-post labeling) now route through CSS custom properties so the dark theme covers every element, not just the toolbar.
+- `docs/MOBILE.md`: iOS (Safari + the free Userscripts app, or Tampermonkey for Safari) and Android (Firefox + Tampermonkey directly) install instructions with screenshots — added after a request to get Shreddit running on an iPhone for a cousin.
 
 ## 0.6.1 - 2026-07-29
 
