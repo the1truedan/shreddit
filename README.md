@@ -123,3 +123,5 @@ Original prototype built through ChatGPT; this release's full-width media, type 
 > prepare for the care when we cannot be there
 > DAN THE MAN ADAMS!
 > https://linktr.ee/the1truedan · https://ko-fi.com/the1truedan
+
+*Shreddit is not endorsed by Reddit, nor is DAN THE MAN ADAMS! affiliated, associated, or assimilated by Reddit, Inc. Full legal: [`docs/LEGAL.md`](./docs/LEGAL.md).*
