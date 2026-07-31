@@ -4,9 +4,15 @@ All notable changes to Shreddit are documented here.
 
 ## Unreleased
 
+## 0.6.3 - 2026-07-31
+
 ### Added
 
 - `docs/LEGAL.md`: standalone privacy statement (no analytics, telemetry, remote code, content export, or external network requests) and non-affiliation statement, per the original design chat.
+
+### Released
+
+- First public release: repository visibility changed from private to public on GitHub (`github.com/the1truedan/shreddit`), 2026-07-31.
 
 ## 0.6.2 - 2026-07-29
 
@@ -50,7 +56,7 @@ All notable changes to Shreddit are documented here.
 
 ### Changed
 
-- Removed the internal “modern view” toggle entirely.
+- Removed the internal "modern view" toggle entirely.
 - Made disabling the userscript the only way to restore Reddit's native presentation.
 - Corrected text-only image selector chaining from the earlier prototype.
 
