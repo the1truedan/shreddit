@@ -108,7 +108,7 @@ Shreddit is intended to remain closer to a browser stylesheet than to an alterna
 
 ## Project status
 
-Private prototype. Reddit's frontend markup changes frequently, so selectors may need maintenance. 
+Public release 5:00PM EST, 7/31/2026. Reddit's frontend markup changes frequently, so selectors may need maintenance. 
 
 ## License
 
