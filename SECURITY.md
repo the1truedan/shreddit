@@ -6,7 +6,7 @@ Only the latest version on the default branch is supported.
 
 ## Reporting
 
-Because this is a private repository, report security or privacy concerns through a private GitHub issue or direct repository communication.
+Report security or privacy concerns through a GitHub issue, or direct repository communication if the concern shouldn't be public.
 
 ## Security posture
 
