@@ -4,6 +4,13 @@ All notable changes to Shreddit are documented here.
 
 ## Unreleased
 
+## 0.6.4 - 2026-07-31
+
+### Fixed
+
+- README: the "Inspired by" / discussion links were jammed directly onto the intro blockquote as bare, unspaced URLs — reflowed into a proper spaced sentence with markdown link text, and converted the footer sig's `linktr.ee`/`ko-fi` links to markdown links as well.
+- CONTRIBUTING.md and SECURITY.md still described the repo as private after yesterday's public release — updated both to reflect the current public status.
+
 ## 0.6.3 - 2026-07-31
 
 ### Added
