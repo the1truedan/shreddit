@@ -1,6 +1,6 @@
 # Contributing
 
-Shreddit is currently a private prototype. Contributions should preserve its narrow role as a local presentation layer.
+Shreddit is a small, deliberately narrow project. Contributions should preserve its role as a local presentation layer.
 
 ## Ground rules
 
