@@ -110,6 +110,18 @@ Shreddit is intended to remain closer to a browser stylesheet than to an alterna
 
 Public release 5:00PM EST, 7/31/2026. Reddit's frontend markup changes frequently, so selectors may need maintenance. 
 
+## How this came to be
+
+Shreddit is a side path from the same season: long hours in browser tabs,
+needing a calmer Reddit while caregiving and building. Prototypes bounced
+through ChatGPT and Claude; the “stay on modern Reddit + MutationObserver”
+call came out of a **Grok** debugging thread (24 July 2026). It shipped as the
+first deliberately **public** open-source utility around the ACL Phase 1
+deadline — a small, honest shippable thing beside the heavier private stack.
+
+Not part of clinical care software. Just a reading aid that kept its privacy
+boundaries tight.
+
 ## License
 
 MIT — see [`LICENSE`](./LICENSE). See also [`docs/LEGAL.md`](./docs/LEGAL.md) for the privacy and non-affiliation statements.
@@ -120,9 +132,10 @@ Original prototype built through ChatGPT; this release's full-width media, type 
 
 ---
 
-> prepare for the care when we cannot be there
-> DAN THE MAN ADAMS!
->
-> [linktr.ee/the1truedan](https://linktr.ee/the1truedan) · [ko-fi.com/the1truedan](https://ko-fi.com/the1truedan)
+<p align="left">
+  <a href="https://linktr.ee/the1truedan"><img src="https://img.shields.io/badge/Linktree-39E09B?style=for-the-badge&logo=linktree&logoColor=white" alt="Linktree"></a>
+  <a href="https://ko-fi.com/the1truedan"><img src="https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi"></a>
+</p>
 
-*Shreddit is not endorsed by Reddit, nor is DAN THE MAN ADAMS! affiliated, associated, or assimilated by Reddit, Inc. Full legal: [`docs/LEGAL.md`](./docs/LEGAL.md).*
+**© 2026 M.A.N.A.G.E.R. LLC** — *prepare for the care when we cannot be there*
+
