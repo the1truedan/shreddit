@@ -1,6 +1,6 @@
 {
   "name": "shreddit-userscript",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "private": true,
   "license": "MIT",
   "description": "A permanent full-width, text-first Reddit userscript for Violentmonkey and Tampermonkey.",
