@@ -31,3 +31,17 @@ Reddit frequently changes web-component names, attributes, and internal wrappers
 4. Fail-open behavior when a selector no longer matches.
 
 Avoid broad selectors that could hide consent, safety, login, age-gate, report, or moderation dialogs.
+
+## AI-assisted development
+
+This repo is developed with AI-assisted tooling (Claude Code and others)
+alongside manual work. Commits produced primarily by an AI agent under human
+direction carry a trailer identifying the assisting model:
+
+```
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+```
+
+This is a provenance note, not a claim of autonomous authorship — every such
+commit was directed, reviewed, and approved by a human before merging. Same
+ground rules above still apply regardless of who or what proposed a change.
