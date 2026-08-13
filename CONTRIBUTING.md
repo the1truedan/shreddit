@@ -34,13 +34,14 @@ Avoid broad selectors that could hide consent, safety, login, age-gate, report, 
 
 ## AI-assisted development
 
-This repo is developed with AI-assisted tooling (Claude Code, Grok Build,
-and others) alongside manual work. Commits produced primarily by an AI
+This repo is developed with AI-assisted tooling (Claude Code, Codex, and
+Grok Build) alongside manual work. Commits produced primarily by an AI
 agent under human direction carry a trailer identifying the assisting
 model:
 
 ```
 Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+Co-authored-by: Codex <noreply@openai.com>
 Co-Authored-By: Grok 4.6 <noreply@x.ai>
 ```
 
@@ -50,14 +51,13 @@ ground rules above still apply regardless of who or what proposed a change.
 
 ## GitHub display
 
-Both trailers above are the attribution. GitHub only links a co-author when
-the email is claimed by a GitHub account. Anthropic has claimed
-`noreply@anthropic.com` ([claude](https://github.com/claude)), so those
-commits show a linked contributor. xAI has not claimed `noreply@x.ai`, so
-Grok stays an unlinked name on commit pages and does not appear in the
-Contributors graph. This repo will not invent a stand-in Grok identity. If
-xAI later claims the email, existing trailers become linkable without a
-rewrite.
+The Claude and Codex trailers above map to linked GitHub contributors:
+`noreply@anthropic.com` maps to [claude](https://github.com/claude), and
+`noreply@openai.com` maps to [codex](https://github.com/codex). xAI has
+not claimed `noreply@x.ai`, so Grok stays an unlinked name on commit pages
+and does not appear in the Contributors graph. This repo will not invent a
+stand-in Grok identity. If xAI later claims the email, existing trailers
+become linkable without a rewrite.
 
 ## Context stack (development process)
 
