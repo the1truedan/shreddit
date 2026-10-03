@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Shreddit
 // @namespace    https://github.com/the1truedan/shreddit
-// @version      0.6.2
-// @description  Shreds modern Reddit's visual clutter into a permanent, full-width, square-edged, text-first speedreader.
+// @version      0.6.5
+// @description  Changes modern Reddit into a full-width, text-first reading view. It removes visual clutter and stays on for every Reddit page.
 // @author       the1truedan
 // @license      MIT
 // @match        https://www.reddit.com/*
@@ -870,17 +870,17 @@
 
     const toolbar = document.createElement('nav');
     toolbar.id = IDS.toolbar;
-    toolbar.setAttribute('aria-label', 'Shreddit speedreader');
+    toolbar.setAttribute('aria-label', 'Shreddit toolbar');
     toolbar.innerHTML = `
       <a class="shreddit-brand" href="/" title="Reddit home">shreddit</a>
       <a href="/">HOME</a>
       <a href="/r/popular/">POPULAR</a>
       <a href="/r/all/">ALL</a>
-      <button id="${IDS.mediaButton}" type="button" title="Cycle media modes — Alt+Shift+M">text only</button>
-      <button id="${IDS.darkButton}" type="button" title="Toggle dark mode — Alt+Shift+D">dark mode</button>
+      <button id="${IDS.mediaButton}" type="button" title="Change how media shows: text only, compact or normal. Shortcut: Alt+Shift+M">text only</button>
+      <button id="${IDS.darkButton}" type="button" title="Turn dark mode on or off. Shortcut: Alt+Shift+D">dark mode</button>
       <span class="shreddit-spacer"></span>
-      <span class="shreddit-status">full-width local speedreader</span>
-      <button id="${IDS.toolbarButton}" type="button" title="Hide toolbar — Alt+Shift+T">×</button>
+      <span class="shreddit-status">full-width reading view · runs only in your browser</span>
+      <button id="${IDS.toolbarButton}" type="button" title="Hide the toolbar. Shortcut: Alt+Shift+T">×</button>
     `;
 
     document.body.prepend(toolbar);

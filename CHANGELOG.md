@@ -4,6 +4,14 @@ All notable changes to Shreddit are documented here.
 
 ## Unreleased
 
+## 0.6.5 - 2026-10-02
+
+### Changed
+
+- Userscript text rewritten in plain technical English (ASD-STE100 style): the `@description`, the toolbar label,
+  the button tooltips and the status text. No change to behavior, selectors or shortcuts.
+- `@version` is now 0.6.5, so Greasy Fork offers the update (0.6.3 and 0.6.4 changed only documentation).
+
 ## 0.6.4 - 2026-07-31
 
 ### Fixed
