@@ -133,6 +133,8 @@ Original prototype built through ChatGPT; this release's full-width media, type 
 ---
 
 <p align="left">
+  <a href="https://greasyfork.org/en/scripts/589405-shreddit"><img src="https://img.shields.io/badge/Greasy%20Fork-shreddit-e8b84a?style=for-the-badge" alt="Greasy Fork"></a>
+  <a href="https://github.com/the1truedan/shreddit/releases/tag/v0.6.4"><img src="https://img.shields.io/badge/release-v0.6.4-3dcaa0?style=for-the-badge" alt="v0.6.4"></a>
   <a href="https://linktr.ee/the1truedan"><img src="https://img.shields.io/badge/Linktree-39E09B?style=for-the-badge&logo=linktree&logoColor=white" alt="Linktree"></a>
   <a href="https://ko-fi.com/the1truedan"><img src="https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white" alt="Ko-fi"></a>
 </p>
